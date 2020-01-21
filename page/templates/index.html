@@ -1,0 +1,61 @@
+
+{% extends 'base.html' %}
+{% block title %}
+  | Home
+{% endblock title %}
+{% block main %}
+
+
+<main role="main">
+
+  <section class="jumbotron text-center">
+    {% include 'components/_alert2.html' %}
+    <div class="container">
+      <h1>Lorem Ipsum</h1>
+      <p class="lead text-muted" id="changetext">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+      <p>
+        {% if user.is_authenticated %}
+        <p class="h4">Welcome, {{user}}</p>
+          <a href="logout" class="btn btn-danger my-2" alert id="clickbtn">Logout</a>
+          <a href="profile" class="btn btn-success my-2" alert id="clickbtn">My Profile</a>
+        {%  else %}
+        <a href="register" class="btn btn-primary my-2" id="clickbtn">Register</a>
+        <a href="login" class="btn btn-secondary my-2" id="clickbtn2">Login
+        </a>
+        {% endif %}
+      </p>
+    </div>
+  </section>
+
+
+
+  <div class="album py-5 bg-light">
+
+    <div class="container">
+      <div class="row">
+        {% for obj in obj %}  
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm">
+            <img src="{{obj.img.url}}" height="40%" width="100%"/>
+            <div class="card-body">
+              <h5 class="card-title-white bg-secondary text-center ">{{obj.name}}</h5>
+              <p class="card-text">{{obj.desc|truncatechars:100}}</p>
+              <p class="card-text-white bg-success text-right">Price: {{obj.price}} $</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-right">{{obj.dt}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+</main>
+
+{% endblock main %}
