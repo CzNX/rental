@@ -41,7 +41,9 @@ def logout(request):
 
 
 def register(request):
-  if request.method == 'POST':
+  if request.user.is_authenticated:
+    return redirect('home')
+  elif request.method == 'POST':
     fname = request.POST['fname']
     lname = request.POST['lname']
     uname = request.POST['uname']
