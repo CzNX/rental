@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
 from django.contrib import messages
 from .models import Rental
+from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView,DeleteView,UpdateView,DetailView
 
 # Create your views here.
@@ -77,8 +78,9 @@ def register(request):
 #   model=Rental
 #   form = PropertyForm
 
-class PropertyCreateView(CreateView):
+class PropertyCreateView(SuccessMessageMixin,CreateView):
     model = Rental
-    fields = ('name', 'img','desc','price')
+    fields = ('name', 'img','desc','price','type')
     template_name = 'create.html'
     success_url = '/'
+    success_message = "%(name)s was created successfully"

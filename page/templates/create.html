@@ -1,5 +1,13 @@
+{% extends 'base.html' %}
+  {% block css %}
+
+  {% endblock css %}
+{% block main %}
+<div class='container mt-3 mr-5 bg-light'>
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save" />
-</form>  
+</form>
+</div>  
+{% endblock main %} 
