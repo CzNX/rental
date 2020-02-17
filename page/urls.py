@@ -1,6 +1,7 @@
 from django.urls import path
 from .import views
 from django.contrib.auth import views as auth_views
+from .views import PropertyCreateView
 
 
 urlpatterns = [
@@ -11,5 +12,6 @@ urlpatterns = [
   path('logout', views.logout, name='logout'),
   path('register', views.register, name='register'),
   path('profile', views.profile, name='profile'),
+  path('create',PropertyCreateView.as_view(), name='create'),
 
 ]

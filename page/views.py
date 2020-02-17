@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import auth,User
 from django.contrib import messages
 from .models import Rental
+from django.views.generic import CreateView,DeleteView,UpdateView,DetailView
+
 # Create your views here.
 
 def home(request):
@@ -69,3 +71,14 @@ def register(request):
       return redirect('register')  
   else:
     return render(request,'registration/register.html')
+
+
+# class PropertyCreateView(CreateView):
+#   model=Rental
+#   form = PropertyForm
+
+class PropertyCreateView(CreateView):
+    model = Rental
+    fields = ('name', 'img','desc','price')
+    template_name = 'create.html'
+    success_url = '/'

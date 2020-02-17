@@ -6,7 +6,7 @@ class Rental(models.Model):
   img = models.ImageField(upload_to='pics')
   desc = models.TextField()
   price = models.IntegerField()
-  dt = models.DateTimeField()
+  dt = models.DateTimeField(auto_now_add=True, blank=True)
 
 
   def __str__(self):
