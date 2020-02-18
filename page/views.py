@@ -5,7 +5,7 @@ from .models import Rental
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView,DeleteView,UpdateView,DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,UpdateView
 
 # Create your views here.
 
@@ -104,3 +104,11 @@ class PropertyCreateView(SuccessMessageMixin,CreateView):
     template_name = 'create.html'
     success_url = '/'
     success_message = "%(name)s was created successfully"
+
+
+class update(UpdateView):
+    model = Rental
+    fields = ('name', 'img','desc','price','type')
+    template_name = 'update.html'
+    success_url = '/'
+    success_message = "%(name)s was updated successfully"

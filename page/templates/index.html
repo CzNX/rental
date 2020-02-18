@@ -43,9 +43,9 @@
               <p class="card-text-white bg-success text-right">Price: {{obj.price}} $</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="{% url 'detail' obj.id %}" class="btn btn-secondary my-2" id="clickbtn2">View</a>
+                  <a href="{% url 'detail' obj.id %}" class="btn btn-primary my-2" id="clickbtn2">View</a>
                   {% comment %} <button href="detail" type="button" class="btn btn-sm btn-primary">View</button> {% endcomment %}
-                  <button type="button" class="btn btn-sm btn-secondary">Edit</button>
+                  <a href="{% url 'update' obj.id %}" class="btn btn-secondary my-2" id="clickbtn2">Edit</a>
                   <button type="button" class="btn btn-sm btn-danger">Delete</button>
                 </div>
                 <small class="text-right">{{obj.dt}}</small>
