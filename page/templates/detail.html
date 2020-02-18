@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block css %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock css %}
+{% block main %}
+<div class='container mt-3 mr-5 bg-light'>
+
+    <div class="container">
+        <h5 class="bg-secondary text-center ">{{obj.name}}</h5>
+      <div class="row mt-5">
+        <div class="col-md-8">
+            <img src="{{obj.img.url}}" height="400px" width="100%"/>
+              <h3 class=" text-right">Price:{{obj.price}}<i class="material-icons" style="font-size: 40px;">attach_money</i></h3>
+        </div>
+        <div class="col-md-4 text-center">
+            <p class="text-center">{{obj.desc}}</p>
+            <button type="button" class="btn btn-sm btn-secondary">Edit</button>
+            <button type="button" class="btn btn-sm btn-danger">Delete</button><br>
+            <small class="mt-2"><strong>Created @ {{obj.dt}}</strong></small>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock main %} 

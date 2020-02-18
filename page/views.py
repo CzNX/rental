@@ -4,13 +4,33 @@ from django.contrib import messages
 from .models import Rental
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView,DeleteView,UpdateView,DetailView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.generic import ListView,DetailView
 
 # Create your views here.
 
-def home(request):
-  obj = Rental.objects.all()
-  context = {'obj':obj}
-  return render(request,'index.html',context)
+# def home(request):
+#   obj = Rental.objects.all()
+#   context = {'obj':obj}
+#   return render(request,'index.html',context)
+
+
+class home(ListView):
+  model=Rental
+  template_name='index.html'
+  context_object_name='obj'
+  queryset = Rental.objects.order_by('-dt')
+  paginate_by = 3  
+
+
+class detail(DetailView):
+  model=Rental
+  context_object_name='obj'
+  template_name='detail.html'
+  # queryset = Rental.objects.all()
+
+
+
 
 
 def profile(request):
