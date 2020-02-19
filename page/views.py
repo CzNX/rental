@@ -106,7 +106,7 @@ class PropertyCreateView(SuccessMessageMixin,CreateView):
     success_message = "%(name)s was created successfully"
 
 
-class update(UpdateView):
+class update(SuccessMessageMixin,UpdateView):
     model = Rental
     fields = ('name', 'img','desc','price','type')
     template_name = 'update.html'
@@ -114,8 +114,8 @@ class update(UpdateView):
     success_message = "%(name)s was updated successfully"
 
 
-class delete(DeleteView):
+class delete(SuccessMessageMixin,DeleteView):
     model = Rental
     success_url = '/'    
     template_name = 'delete.html'
-    success_message = "%(name)s was updated successfully"
+    success_message = "%(name)s was deleted successfully"
