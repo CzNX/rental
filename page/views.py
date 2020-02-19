@@ -5,7 +5,7 @@ from .models import Rental
 from django.contrib.messages.views import SuccessMessageMixin
 from django.views.generic import CreateView,DeleteView,UpdateView,DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView,DetailView,UpdateView
+from django.views.generic import ListView,DetailView,UpdateView,DeleteView
 
 # Create your views here.
 
@@ -111,4 +111,11 @@ class update(UpdateView):
     fields = ('name', 'img','desc','price','type')
     template_name = 'update.html'
     success_url = '/'
+    success_message = "%(name)s was updated successfully"
+
+
+class delete(DeleteView):
+    model = Rental
+    success_url = '/'    
+    template_name = 'delete.html'
     success_message = "%(name)s was updated successfully"

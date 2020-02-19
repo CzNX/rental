@@ -13,6 +13,7 @@ urlpatterns = [
   path('logout', views.logout, name='logout'),
   path('<int:pk>', views.detail.as_view(), name='detail'),
   path('update/<int:pk>', views.update.as_view(), name='update'),
+  path('delete/<int:pk>', views.delete.as_view(), name='delete'),
   path('register', views.register, name='register'),
   # path('profile', views.profile, name='profile'),
   path('create',PropertyCreateView.as_view(), name='create'),

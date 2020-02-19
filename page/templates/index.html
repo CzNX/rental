@@ -46,7 +46,7 @@
                   <a href="{% url 'detail' obj.id %}" class="btn btn-primary my-2" id="clickbtn2">View</a>
                   {% comment %} <button href="detail" type="button" class="btn btn-sm btn-primary">View</button> {% endcomment %}
                   <a href="{% url 'update' obj.id %}" class="btn btn-secondary my-2" id="clickbtn2">Edit</a>
-                  <button type="button" class="btn btn-sm btn-danger">Delete</button>
+                  <a href="{% url 'delete' obj.id %}" class="btn btn-danger my-2" id="clickbtn2">Delete</a>
                 </div>
                 <small class="text-right">{{obj.dt}}</small>
               </div>
