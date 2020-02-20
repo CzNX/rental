@@ -3,9 +3,9 @@ from django.contrib.auth.models import auth,User
 from django.contrib import messages
 from .models import Rental
 from django.contrib.messages.views import SuccessMessageMixin
-from django.views.generic import CreateView,DeleteView,UpdateView,DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.views.generic import ListView,DetailView,UpdateView,DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView,DetailView,UpdateView,DeleteView,CreateView
 
 # Create your views here.
 
@@ -20,7 +20,7 @@ class home(ListView):
   template_name='index.html'
   context_object_name='obj'
   queryset = Rental.objects.order_by('-dt')
-  paginate_by = 3  
+  paginate_by = 6  
 
 
 class detail(DetailView):
@@ -28,8 +28,6 @@ class detail(DetailView):
   context_object_name='obj'
   template_name='detail.html'
   # queryset = Rental.objects.all()
-
-
 
 
 
@@ -94,13 +92,10 @@ def register(request):
     return render(request,'registration/register.html')
 
 
-# class PropertyCreateView(CreateView):
-#   model=Rental
-#   form = PropertyForm
 
 class PropertyCreateView(SuccessMessageMixin,CreateView):
     model = Rental
-    fields = ('name', 'img','desc','price','type')
+    fields = ('name', 'img','desc','price','type',)
     template_name = 'create.html'
     success_url = '/'
     success_message = "%(name)s was created successfully"
@@ -114,8 +109,10 @@ class update(SuccessMessageMixin,UpdateView):
     success_message = "%(name)s was updated successfully"
 
 
-class delete(SuccessMessageMixin,DeleteView):
+class delete(LoginRequiredMixin,SuccessMessageMixin,DeleteView):
     model = Rental
     success_url = '/'    
     template_name = 'delete.html'
     success_message = "%(name)s was deleted successfully"
+    login_url = 'login'
+    

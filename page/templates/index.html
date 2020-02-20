@@ -45,14 +45,20 @@
                 <div class="btn-group">
                   <a href="{% url 'detail' obj.id %}" class="btn btn-primary my-2" id="clickbtn2">View</a>
                   {% comment %} <button href="detail" type="button" class="btn btn-sm btn-primary">View</button> {% endcomment %}
-                  <a href="{% url 'update' obj.id %}" class="btn btn-secondary my-2" id="clickbtn2">Edit</a>
-                  <a href="{% url 'delete' obj.id %}" class="btn btn-danger my-2" id="clickbtn2">Delete</a>
+                  {% if obj.reg_agent.id == user.id %}
+                    <a href="{% url 'update' obj.id %}" class="btn btn-secondary my-2" id="clickbtn2">Edit</a>
+                    <a href="{% url 'delete' obj.id %}" class="btn btn-danger my-2" id="clickbtn2">Delete</a>
+                  {% endif %} 
                 </div>
                 <small class="text-right">{{obj.dt}}</small>
               </div>
             </div>
           </div>
         </div>
+        {% empty %}
+        <div class="text-center">
+          <p>No items Available</p>  
+        </div>        
         {% endfor %}
 
       </div>

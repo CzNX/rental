@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
   {% comment %} {% block css %}
 
   {% endblock css %} {% endcomment %}
 {% block main %}
-<div class='container mt-3 mr-5 bg-light'>
+<h1 class="text-center"> Edit Item :</h1>
+<div class='container mt-3' style="width: 40%">
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save" />
+    {{ form|crispy }}
+    <input type="submit" value="Update" />
 </form>
 </div>  
 {% endblock main %} 
