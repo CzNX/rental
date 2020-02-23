@@ -15,8 +15,10 @@
         </div>
         <div class="col-md-4 text-center">
             <p class="text-center">{{obj.desc}}</p>
+            {% if obj.reg_agent.id == user.id %}
             <a href="{% url 'update' obj.id %}" class="btn btn-primary my-2" id="clickbtn2">Edit</a>
             <a href="{% url 'delete' obj.id %}" class="btn btn-danger my-2" id="clickbtn2">Delete</a><br>
+            {% endif %}
             <small class="mt-2"><strong>Created @ {{obj.dt}}</strong></small>
         </div>
       </div>

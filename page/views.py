@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import Rental
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin,UserPassesTestMixin
 from django.views.generic import ListView,DetailView,UpdateView,DeleteView,CreateView
 
 # Create your views here.
@@ -95,24 +95,32 @@ def register(request):
 
 class PropertyCreateView(SuccessMessageMixin,CreateView):
     model = Rental
-    fields = ('name', 'img','desc','price','type',)
+    fields = ('name', 'img','desc','price','type','reg_agent')
     template_name = 'create.html'
     success_url = '/'
     success_message = "%(name)s was created successfully"
 
 
-class update(SuccessMessageMixin,UpdateView):
+class update(UserPassesTestMixin,SuccessMessageMixin,UpdateView):
     model = Rental
-    fields = ('name', 'img','desc','price','type')
+    fields = ('name', 'img','desc','price','type','reg_agent')
     template_name = 'update.html'
     success_url = '/'
     success_message = "%(name)s was updated successfully"
+    def test_func(self):
+      obj = self.get_object()
+      return obj.reg_agent == self.request.user
 
 
-class delete(LoginRequiredMixin,SuccessMessageMixin,DeleteView):
+class delete(UserPassesTestMixin,SuccessMessageMixin,DeleteView):
     model = Rental
     success_url = '/'    
     template_name = 'delete.html'
     success_message = "%(name)s was deleted successfully"
     login_url = 'login'
+    def test_func(self):
+      obj = self.get_object()
+      return obj.reg_agent == self.request.user
+
+
     
